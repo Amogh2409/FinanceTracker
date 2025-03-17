@@ -1,27 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FinanceWidgets from "../components/FinanceWidgets";
 import InvestmentTrends from "../components/InvestmentTrends";
 import ExpenseTracker from "../components/ExpenseTracker";
 import MarketOverview from "../components/MarketOverview";
 import SmartAlerts from "../components/SmartAlerts";
 import PortfolioSummary from "../components/PortfolioSummary";
+import { FaMoon,FaSun } from "react-icons/fa";
+
 
 const Dashboard = () => {
   const [theme, setTheme] = useState("dark");
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 640);
+
+  useEffect(() => {
+    const handleResize = () => setIsSmallScreen(window.innerWidth < 640);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div
       className={`min-h-screen pt-20 ${theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"} transition-all`}
     >
-      <div className="container mx-auto py-12 px-6">
+      <div className="container mx-auto py-12 px-6 gap-2">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold">📊 Dashboard</h1>
+          <h1 className="text-4xl font-bold">
+            {
+              isSmallScreen ?
+              "Dashboard"
+              :"📊 Dashboard"
+            }
+          </h1>
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="px-4 py-2 bg-yellow-400 text-gray-900 rounded-lg font-semibold hover:bg-yellow-300 transition"
           >
-            Toggle Theme
+            
+            {
+              isSmallScreen ? 
+                theme === "dark" ? <FaSun /> : <FaMoon/>
+              : "Toggle Theme"
+            }
           </button>
         </div>
 
