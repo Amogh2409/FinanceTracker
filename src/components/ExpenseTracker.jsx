@@ -30,15 +30,15 @@ const ExpenseTracker = () => {
       <h2 className="text-3xl font-bold mb-4 text-yellow-400">Expense Tracker</h2>
       
       {/* Expense Input */}
-      <div className="flex gap-3 mb-6">
-        <input type="number" placeholder="Amount" value={amount} onChange={(e) => setAmount(e.target.value)} className="p-2 rounded bg-gray-800 text-white w-1/3" />
-        <select value={category} onChange={(e) => setCategory(e.target.value)} className="p-2 rounded bg-gray-800 text-white w-1/3">
+      <div className="flex sm:flex-col md:flex-row gap-3 mb-6">
+        <input type="number" placeholder="Amount" value={amount} onChange={(e) => setAmount(e.target.value)} className="p-2 rounded bg-gray-800 text-white md:w-1/3" />
+        <select value={category} onChange={(e) => setCategory(e.target.value)} className="p-2 rounded bg-gray-800 md:w-1/3 text-white ">
           {categories.map((cat) => (
             <option key={cat}>{cat}</option>
           ))}
         </select>
-        <input type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} className="p-2 rounded bg-gray-800 text-white w-1/3" />
-        <button onClick={addExpense} className="p-2 bg-green-500 rounded hover:bg-green-400"><FiPlus size={20} /></button>
+        <input type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} className="p-2 rounded bg-gray-800 md:w-1/3 text-white " />
+        <button onClick={addExpense} className="p-2 flex justify-center  bg-green-500 rounded hover:bg-green-400"><FiPlus size={20} /></button>
       </div>
       
       {/* Filter */}
